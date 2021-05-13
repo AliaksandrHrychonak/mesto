@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="pages/index.css">
   <title>Document</title>
 </head>
-<body>
-
+<body class="root">
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    </header>
+    <section class="main">
+      <section class="profile">
+        <div class="profile__item profile__item_location_left">
+          <img class="profile__avatar" src="./images/avatar.png" alt="Фото профиля">
+          <div class="profile__info">
+            <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+            <button class="profile__button-edit" type="" name=""></button>
+            <p class="profile__info-subtitle">Исследователь океана</p>
+          </div>
+        </div>
+        <div class="profile__item profile__item_location_left">
+          <button class="profile__button-add" type="" name=""></button>
+        </div>
+      </section>
+      <section class="elements">
+        <ul class="elements__item">
+          <li class="elements__card">
+            <img src="./images/kilauea-unsplash.jpg" alt="Вулкан Килауэа" class="elements__image">
+            <div class="elements__information">
+              <h2 class="elements__title">Вулкан Килауэа</h2>
+              <button class="elements__button-like" type="" name=""></button>
+            </div>
+          </li>
+        </ul>
+        <ul class="elements__item">
+          <li class="elements__card">
+            <img src="./images/kilauea-unsplash.jpg" alt="Вулкан Килауэа" class="elements__image">
+            <div class="elements__information">
+              <h2 class="elements__title">Вулкан Килауэа</h2>
+              <button class="elements__button-like" type="" name=""></button>
+            </div>
+          </li>
+        </ul>
+        <ul class="elements__item">
+          <li class="elements__card">
+            <img src="./images/kilauea-unsplash.jpg" alt="Вулкан Килауэа" class="elements__image">
+            <div class="elements__information">
+              <h2 class="elements__title">Вулкан Килауэа</h2>
+              <button class="elements__button-like" type="" name=""></button>
+            </div>
+          </li>
+        </ul>
+        <ul class="elements__item">
+          <li class="elements__card">
+            <img src="./images/kilauea-unsplash.jpg" alt="Вулкан Килауэа" class="elements__image">
+            <div class="elements__information">
+              <h2 class="elements__title">Вулкан Килауэа</h2>
+              <button class="elements__button-like" type="" name=""></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </section>
+    <div class="popup popup_opened" id="popup">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button" name="button"></button>
+      </div>
+    </div>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./script/index.js"></script>
 </body>
 </html>
