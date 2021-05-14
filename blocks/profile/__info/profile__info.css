@@ -1,5 +1,6 @@
 .profile__info {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin: 22px 0 0 30px;
   width: 336px;
@@ -7,7 +8,7 @@
 
 @media screen and (max-width: 487px) {
   .profile__info {
-    max-width: 282px;
+    width: 282px;
     justify-content: space-between;
     margin: 22.5px 0 0 0;
   }
