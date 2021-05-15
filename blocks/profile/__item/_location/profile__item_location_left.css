@@ -2,7 +2,7 @@
   display: flex;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 505px) {
   .profile__item_location_left {
     align-self: center;
     display: flex;
