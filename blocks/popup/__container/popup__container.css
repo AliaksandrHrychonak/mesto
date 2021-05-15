@@ -1,14 +1,11 @@
 .popup__container {
   display: flex;
+  position: relative;
+  justify-content: center;
+  align-self: center;
   flex-direction: column;
   background-color: #fff;
   width: calc(430px - 72px);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-    -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
   padding: 34px 36px;
   border-radius: 10px 10px 10px 10px;
 }
