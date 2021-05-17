@@ -7,7 +7,7 @@
   border: 1px solid #fff;
   margin: 15px 0 0 18px;
   padding: 0;
-  background: #000000 url(../../../images/button-edit.png) no-repeat center/12px 12px;
+  background: #000000 url(../../../images/button-edit.svg) no-repeat center/10px 10px;
   cursor: pointer;
   transition: opacity 0.4s linear;
 }
@@ -16,7 +16,7 @@
   opacity: 0.6;
 }
 
-@media screen and (max-width: 487px) {
+@media screen and (max-width: 505px) {
   .profile__button-edit {
     width: 18px;
     height: 18px;

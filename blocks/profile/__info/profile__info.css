@@ -6,10 +6,10 @@
   width: 336px;
 }
 
-@media screen and (max-width: 487px) {
+@media screen and (max-width: 505px) {
   .profile__info {
+    justify-content: center;
     width: 282px;
-    justify-content: space-between;
     margin: 22.5px 0 0 0;
   }
 }

@@ -1,6 +1,5 @@
 .elements__item {
-  list-style: none;
-  margin: 47.25px auto;
+  margin: 47.25px auto 0 auto;
   padding: 0;
   grid-template-columns: repeat(auto-fit, minmax(282px, max-content));
   display: grid;
