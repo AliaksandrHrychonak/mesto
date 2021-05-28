@@ -8,6 +8,7 @@
 --FlexBox
 --Grid
 --JavaScript
+--Bem Nested
 
 
 * [Ссылка на страницу проекта](https://aliaksandrhrychonak.github.io/mesto/)

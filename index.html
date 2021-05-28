@@ -28,49 +28,7 @@
       </section>
       <section class="elements">
         <div class="elements__item">
-          <div class="elements__card">
-            <button class="elements__button_delete" type="button" name="delete" aria-label="Удалить"></button>
-            <img src="./images/kilauea-unsplash.jpg" alt="Вулкан Килауэа" class="elements__image">
-            <div class="elements__information">
-              <h2 class="elements__title">Вулкан Килауэа</h2>
-              <button class="elements__button-like" type="button" name="Like" aria-label="Like"></button>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img src="./images/skogafoss.jpg" alt="Водопад Скогафосс" class="elements__image">
-            <div class="elements__information">
-              <h2 class="elements__title">Водопад Скогафосс</h2>
-              <button class="elements__button-like" type="button" name="Like" aria-label="Like"></button>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img src="./images/opera-sydney.jpg" alt="Сиднейский дом оперы" class="elements__image">
-            <div class="elements__information">
-              <h2 class="elements__title">Сиднейский оперный театр</h2>
-              <button class="elements__button-like" type="button" name="Like" aria-label="Like"></button>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img src="./images/grand-canyon.jpg" alt="Большой Каньон" class="elements__image">
-            <div class="elements__information">
-              <h2 class="elements__title">Большой Каньон</h2>
-              <button class="elements__button-like" type="button" name="Like" aria-label="Like"></button>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img src="./images/stonehenge.jpg" alt="Стоунхендж" class="elements__image">
-            <div class="elements__information">
-              <h2 class="elements__title">Стоунхендж</h2>
-              <button class="elements__button-like" type="button" name="Like" aria-label="Like"></button>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img src="./images/provence.jpg" alt="Прованс" class="elements__image">
-            <div class="elements__information">
-              <h2 class="elements__title">Прованс</h2>
-              <button class="elements__button-like" type="button" name="Like" aria-label="Like"></button>
-            </div>
-          </div>
+          
         </div>
       </section>
     </main>
@@ -85,7 +43,7 @@
           <input class="popup__input popup__input_value_job" name="job" type="text" value="Исследователь океана">
           <button class="popup__button-save" type="submit" name="Save" aria-label="Сохранить">Сохранить</button>
         </form>
-        <button class="popup__button-close profile_close" type="button" name="Close" aria-label="Закрыть"></button>
+        <button class="popup__button-close popup__button-close_type_profile" type="button" name="Close" aria-label="Закрыть"></button>
       </div>
     </div>
     <div class="popup popup_type_card">
@@ -94,13 +52,17 @@
           <form class="popup__form" name="popup-form">
             <input class="popup__input popup__input_value_title" name="title" type="text" value="" placeholder="Название" required>
             <input class="popup__input popup__input_value_image" name="image" type="text" value="" placeholder="Ссылка на картинку" required>
-            <button class="popup__button-save popup__button-create" type="submit" name="create" aria-label="Создать">Создать</button>
+            <button class="popup__button-save popup__button_submit-card" type="submit" name="create" aria-label="Создать">Создать</button>
           </form>
-          <button class="popup__button-close card_close" type="button" name="Close" aria-label="Закрыть"></button>
+          <button class="popup__button-close popup__button-close_type_close" type="button" name="Close" aria-label="Закрыть"></button>
       </div>
     </div>
-    <div class="popup popup_type_image">
-
+    <div class="popup popup_type_image ">
+        <figure class="popup__container-image">
+        <img src="/" alt="" class="elements__image popup__image">
+        <button class="popup__button-close popup__button-close_type_image" type="button" name="Close" aria-label="Закрыть"></button>
+        <figcaption class="elements__title popup__description"></figcaption>
+        </figure>
     </div>
     <template class="template">
       <div class="elements__card">
