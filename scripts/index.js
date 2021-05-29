@@ -83,14 +83,11 @@ function cardAdd(name, link) {
   const buttonDeleteCard = card.querySelector('.elements__button_delete');
   const imageCard        = card.querySelector('.elements__image');
   const titleCard        = card.querySelector('.elements__title');
-  
   imageCard.alt = name;
   imageCard.src = link;
   titleCard.textContent = name;
-  
-
-  buttonDeleteCard.addEventListener('click', deleteCard);
   buttonLike.addEventListener('click', likeCard);
+  buttonDeleteCard.addEventListener('click', deleteCard);
   imageCard.addEventListener('click', () =>  openImageCard(name, link));
   buttonCloseImage.addEventListener('click', () => closeImageCard(name, link));
   return card ;
