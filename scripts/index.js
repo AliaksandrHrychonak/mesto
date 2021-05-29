@@ -78,7 +78,7 @@ function likeCard (element) {
 }
 
 function cardAdd(name, link) {
-  const card          = itemTemplate.content.querySelector('.elements__card').cloneNode(true);
+  const card             = itemTemplate.content.querySelector('.elements__card').cloneNode(true);
   const buttonLike       = card.querySelector('.elements__button-like');
   const buttonDeleteCard = card.querySelector('.elements__button_delete');
   const imageCard        = card.querySelector('.elements__image');
