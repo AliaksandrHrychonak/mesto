@@ -46,6 +46,9 @@ const profileJob = document.querySelector('.profile__info-subtitle');
 const nameCardInput = document.querySelector('.popup__input_value_title');
 const linkCardInput = document.querySelector('.popup__input_value_image');
 
+const cardPopupTitle = document.querySelector('.popup__description')
+const cardPopupImage = document.querySelector('.popup__image')
+
 const elementsImage = document.querySelector('.elements__image');
 
 const itemTemplate = document.querySelector('.template');
@@ -92,36 +95,37 @@ function cardAdd(name, link) {
   return newCard ;
 }
 
-function submitNewCard (evt) {
-  evt.preventDefault();
-  list.prepend(cardAdd(nameCardInput.value, linkCardInput.value));
-
-  // closePopup(popupImage);
-} 
-
-initialCards.forEach(function(item) {
-  const newCard = cardAdd(item['name'], item['link']);
+initialCards.forEach(function(element) {
+  const newCard = cardAdd(element['name'], element['link']);
   list.append(newCard);
 });
 
+function submitNewCard (evt) {
+  evt.preventDefault();
+  const newData = {
+    name:  nameCardInput.value,
+    link: linkCardInput.value
+  }
+  list.prepend(cardAdd(newData));
+  closePopup(popupImage);
+} 
+
 function openImageCard(name, link) {
   toggleModal(popupImage);
-  titleCard.textContent = name;
-  imageCard.alt = name;
-  imageCard.src = link;
+  cardPopupTitle.textContent = name;
+  cardPopupImage.alt = name;
+  cardPopupImage.src = link;
 }
 
-function closeImageCard(name, link) {
+function closeImageCard() {
   closePopup(popupImage);
-  titleCard.textContent = name;
-  imageCard.alt = name;
-  imageCard.src = link;
+  
 }
 
-buttonEdit.addEventListener('click', () => toggleModal(popupProfile))
-buttonAddCard.addEventListener('click', () => toggleModal(popupCard))
+buttonEdit.addEventListener('click', () => toggleModal(popupProfile));
+buttonAddCard.addEventListener('click', () => toggleModal(popupCard));
 
-buttonCloseCard.addEventListener('click', () => closePopup(popupCard))
+buttonCloseCard.addEventListener('click', () => closePopup(popupCard));
 buttonCloseProfile.addEventListener('click',() => closePopup(popupProfile));
 
 formElement.addEventListener('submit', formSubmitHandler);
