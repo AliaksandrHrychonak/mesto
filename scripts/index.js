@@ -28,8 +28,8 @@ const initialCards = [
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupCard = document.querySelector('.popup_type_card');
 const popupImage = document.querySelector('.popup_type_image');
-const cardPopupTitle = document.querySelector('.popup__description')
-const cardPopupImage = document.querySelector('.popup__image')
+const cardPopupTitle = document.querySelector('.popup__description');
+const cardPopupImage = document.querySelector('.popup__image');
 // button
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonCloseProfile = document.querySelector('.popup__button-close_type_profile');
@@ -55,7 +55,7 @@ const itemTemplate = document.querySelector('.template');
 const list = document.querySelector('.elements__item');
 
 function toggleModal(modal) {
-  modal.classList.add('popup_opened')
+  modal.classList.add('popup_opened');
 }
 
 function closePopup (modal) {
