@@ -28,17 +28,17 @@ const initialCards = [
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupCard = document.querySelector('.popup_type_card');
 const popupImage = document.querySelector('.popup_type_image');
-const cardPopupTitle = document.querySelector('.popup__description');
-const cardPopupImage = document.querySelector('.popup__image');
+const cardPopupTitle = document.querySelector('.elements__title_for_popup');
+const cardPopupImage = document.querySelector('.elements__image_for_popup');
 // button
 const buttonEdit = document.querySelector('.profile__button-edit');
-const buttonCloseProfile = document.querySelector('.popup__button-close_type_profile');
-const buttonCloseCard = document.querySelector('.popup__button-close_type_close');
-const buttonCloseImage = document.querySelector('.popup__button-close_type_image');
+const buttonCloseProfile = document.querySelector('.popup__button-close_profile');
+const buttonCloseCard = document.querySelector('.popup__button-close_card');
+const buttonCloseImage = document.querySelector('.popup__button-close_image');
 const buttonAddCard = document.querySelector('.profile__button-add');
 const buttonLike = document.querySelector('.elements__button-like');
 const buttonDeleteCard = document.querySelector('.elements__button_delete');
-const buttonSubmitNewCard = document.querySelector('.popup__button_submit-card')
+const buttonSubmitNewCard = document.querySelector('.popup__button-save_submit_card')
 // formElement
 const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_value_name');

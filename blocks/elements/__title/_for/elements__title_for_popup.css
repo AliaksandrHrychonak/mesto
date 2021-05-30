@@ -1,4 +1,4 @@
-.popup__description {
+.elements__title_for_popup {
   align-self: flex-start;
   font-weight: normal;
   font-size: 12px;
@@ -7,4 +7,4 @@
   padding: 0;
   margin: 10px 0 0 0;
   overflow: visible;
-}
+} 
