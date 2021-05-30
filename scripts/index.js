@@ -28,8 +28,8 @@ const initialCards = [
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupCard = document.querySelector('.popup_type_card');
 const popupImage = document.querySelector('.popup_type_image');
-const cardPopupTitle = document.querySelector('.elements__title_for_popup');
-const cardPopupImage = document.querySelector('.elements__image_for_popup');
+const cardPopupTitle = document.querySelector('.popup__description');
+const cardPopupImage = document.querySelector('.popup__image');
 // button
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonCloseProfile = document.querySelector('.popup__button-close_profile');
