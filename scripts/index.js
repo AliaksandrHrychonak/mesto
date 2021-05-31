@@ -54,7 +54,7 @@ const elementsImage = document.querySelector('.elements__image');
 const itemTemplate = document.querySelector('.template');
 const list = document.querySelector('.elements__item');
 
-function addModal(modal) {
+function openModal(modal) {
   modal.classList.add('popup_opened');
 }
 
@@ -106,7 +106,7 @@ function submitNewCard (evt) {
 } 
 
 function openImageCard(name, link) {
-  addModal(popupImage);
+  openModal(popupImage);
   cardPopupImage.alt = name;
   cardPopupImage.src = link;
   cardPopupTitle.textContent = name;
@@ -116,8 +116,8 @@ function closeImageCard() {
   closePopup(popupImage);
 }
 
-buttonEdit.addEventListener('click', () => addModal(popupProfile));
-buttonAddCard.addEventListener('click', () => addModal(popupCard));
+buttonEdit.addEventListener('click', () => openModal(popupProfile));
+buttonAddCard.addEventListener('click', () => openModal(popupCard));
 
 buttonCloseCard.addEventListener('click', () => closePopup(popupCard));
 buttonCloseProfile.addEventListener('click',() => closePopup(popupProfile));
