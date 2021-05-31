@@ -54,7 +54,7 @@ const elementsImage = document.querySelector('.elements__image');
 const itemTemplate = document.querySelector('.template');
 const list = document.querySelector('.elements__item');
 
-function toggleModal(modal) {
+function openModal(modal) {
   modal.classList.add('popup_opened');
 }
 
@@ -78,11 +78,11 @@ function likeCard (element) {
 }
 
 function cardAdd(name, link) {
-  const card             = itemTemplate.content.querySelector('.elements__card').cloneNode(true);
-  const buttonLike       = card.querySelector('.elements__button-like');
+  const card = itemTemplate.content.querySelector('.elements__card').cloneNode(true);
+  const buttonLike = card.querySelector('.elements__button-like');
   const buttonDeleteCard = card.querySelector('.elements__button_delete');
-  const imageCard        = card.querySelector('.elements__image');
-  const titleCard        = card.querySelector('.elements__title');
+  const imageCard = card.querySelector('.elements__image');
+  const titleCard = card.querySelector('.elements__title');
   imageCard.alt = name;
   imageCard.src = link;
   titleCard.textContent = name;
@@ -106,7 +106,7 @@ function submitNewCard (evt) {
 } 
 
 function openImageCard(name, link) {
-  toggleModal(popupImage);
+  openModal(popupImage);
   cardPopupImage.alt = name;
   cardPopupImage.src = link;
   cardPopupTitle.textContent = name;
@@ -116,8 +116,8 @@ function closeImageCard() {
   closePopup(popupImage);
 }
 
-buttonEdit.addEventListener('click', () => toggleModal(popupProfile));
-buttonAddCard.addEventListener('click', () => toggleModal(popupCard));
+buttonEdit.addEventListener('click', () => openModal(popupProfile));
+buttonAddCard.addEventListener('click', () => openModal(popupCard));
 
 buttonCloseCard.addEventListener('click', () => closePopup(popupCard));
 buttonCloseProfile.addEventListener('click',() => closePopup(popupProfile));
