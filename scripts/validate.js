@@ -22,7 +22,7 @@ function setCustomError(input, config) {
   input.setCustomValidity('')
   if(validity.tooShort || validity.tooLong) {
     const itemLength = input.value.length
-    input.setCustomValidity(`Минимальное количество символов: 2. Длинна текста сейчас: ${itemLength}`)
+    input.setCustomValidity(`Минимальное количество символов: 2. Длинна текста сейчас: ${itemLength} символ.`)
   } if( input.value.length === 0) {
     input.setCustomValidity(config.erorrText);
     return
