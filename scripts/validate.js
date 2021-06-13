@@ -12,7 +12,6 @@ function formSubmit(event) {
 function formInput(event, config) {
   const input = event.target;
   const form = event.currentTarget;
-
   setCustomError(input, config);
   setFieldError(input);
   setButtonToggle(form, config);
@@ -23,22 +22,18 @@ function setCustomError(input, config) {
   input.setCustomValidity('')
   if(validity.tooShort || validity.tooLong) {
     const itemLength = input.value.length
-    const min = input.getAttribute('minlength')
-    const max = input.getAttribute('maxlength')
-    input.setCustomValidity(`Минимальное количество символов:2. Длинна текста сейчас:${' ' + itemLength}, а должно быть от ${min} до ${max}`)
+    input.setCustomValidity(`Минимальное количество символов: 2. Длинна текста сейчас: ${itemLength}`)
   } if( input.value.length === 0) {
     input.setCustomValidity(config.erorrText);
     return
-  }
-
-  if(validity.typeMismatch) {
+  } if(validity.typeMismatch) {
     input.setCustomValidity(config.erorrLink)
   }
 }
 
 function setFieldError(input) {
-  const span = document.querySelector(`#${input.id}-error`);
-  span.textContent = input.validationMessage;
+  const p = document.querySelector(`#${input.id}-error`);
+  p.textContent = input.validationMessage;
 }
 
 function setButtonToggle(form, config) {
@@ -53,6 +48,7 @@ function setButtonToggle(form, config) {
     button.setAttribute('disabled', true)
   }
 }
+
 
 enableValidation({
   form: '.popup__form[name="popup-form-card"]',
