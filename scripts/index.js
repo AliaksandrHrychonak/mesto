@@ -71,7 +71,6 @@ function closePopup(modal) {
 }
 
 const handleEscUp = (evt) => {
-  // evt.preventDefault();
   const activePopup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
     closePopup(activePopup);
@@ -170,6 +169,3 @@ popupImage.addEventListener("click", (evt) => {
   }
 });
 
-// Слушатель событий, закрывающий модальное окно по нажатию на Esc, добавляется при открытии модального окна и удаляется при его закрытии.
-
-// Слушатель submit для формы карточки
