@@ -14,6 +14,7 @@ function formInput(event, config) {
   const form = event.currentTarget;
   setCustomError(input, config);
   setFieldError(input);
+  inputValid(input);
   setButtonToggle(form, config);
 }
 
@@ -49,6 +50,14 @@ function setButtonToggle(form, config) {
   }
 }
 
+function inputValid(input) {
+  const inputValidity = input.checkValidity();
+  if(inputValidity) {
+    input.classList.remove('popup__input_border_disabled');
+  } else {
+    input.classList.add('popup__input_border_disabled');
+  }
+}
 
 enableValidation({
   form: '.popup__form[name="popup-form-card"]',
