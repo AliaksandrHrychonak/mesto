@@ -7,26 +7,15 @@ function enableValidation(config) {
 }
 
 function handleFormSubmit(event) {
-  event.preventDefault();
   const form = event.currentTarget;
 }
 
 function handleFormInput(event, config) {
   const input = event.target;
   const form = event.currentTarget;
-  checkInputValidity(input, form, config);
   setMessageError(input);
   setInputError(input, config);
   toggleButtonState(form, config);
-}
-
-function checkInputValidity(input, form, config) {
-  const validity = input.validity.valid;
-  if (!validity) {
-    setMessageError(input);
-    setInputError(input, config);
-    toggleButtonState(form, config);
-  }
 }
 
 function setMessageError(input) {
