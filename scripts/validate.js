@@ -1,75 +1,63 @@
 function enableValidation(config) {
-  const form = document.querySelector(config.form);
-  form.addEventListener('submit', formSubmit);
-  form.addEventListener('input', (event) => formInput(event, config));
+  const form = Array.from(document.querySelectorAll(config.form));
+  form.forEach((element) => {
+    element.addEventListener("submit", handleFormSubmit);
+    element.addEventListener("input", (event) => handleFormInput(event, config));
+  });
 }
 
-function formSubmit(event) {
+function handleFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
 }
 
-function formInput(event, config) {
+function handleFormInput(event, config) {
   const input = event.target;
   const form = event.currentTarget;
-  setCustomError(input, config);
-  setFieldError(input);
-  inputValid(input);
-  setButtonToggle(form, config);
+  checkInputValidity(input, form, config);
+  setMessageError(input);
+  setInputError(input, config);
+  toggleButtonState(form, config);
 }
 
-function setCustomError(input, config) {
-  const validity = input.validity;
-  input.setCustomValidity('')
-  if(validity.tooShort || validity.tooLong) {
-    const itemLength = input.value.length
-    input.setCustomValidity(`Минимальное количество символов: 2. Длинна текста сейчас: ${itemLength} символ.`)
-  } if( input.value.length === 0) {
-    input.setCustomValidity(config.erorrText);
-    return
-  } if(validity.typeMismatch) {
-    input.setCustomValidity(config.erorrLink)
+function checkInputValidity(input, form, config) {
+  const validity = input.validity.valid;
+  if (!validity) {
+    setMessageError(input);
+    setInputError(input, config);
+    toggleButtonState(form, config);
   }
 }
 
-function setFieldError(input) {
+function setMessageError(input) {
   const p = document.querySelector(`#${input.id}-error`);
   p.textContent = input.validationMessage;
 }
 
-function setButtonToggle(form, config) {
+function toggleButtonState(form, config) {
   const button = form.querySelector(config.submitBotton);
-  const formIsValid = form.checkValidity();
-
-  if(formIsValid) {
-    button.classList.remove(config.buttonValid)
-    button.removeAttribute('disabled')
+  const IsValid = form.checkValidity();
+  if (IsValid) {
+    button.classList.remove(config.buttonValid);
+    button.removeAttribute("disabled");
   } else {
-    button.classList.add(config.buttonValid)
-    button.setAttribute('disabled', true)
+    button.classList.add(config.buttonValid);
+    button.setAttribute("disabled", true);
   }
 }
 
-function inputValid(input) {
+function setInputError(input, config) {
   const inputValidity = input.checkValidity();
-  if(inputValidity) {
-    input.classList.remove('popup__input_border_disabled');
+  if (inputValidity) {
+    input.classList.remove(config.inputErrorClass);
   } else {
-    input.classList.add('popup__input_border_disabled');
+    input.classList.add(config.inputErrorClass);
   }
 }
 
 enableValidation({
-  form: '.popup__form[name="popup-form-card"]',
-  submitBotton: '.popup__button-save',
-  buttonValid: 'popup__button-save_disable',
-  erorrText: 'Вы пропустили это поле.',
-  erorrLink: 'Введите адрес сайта.',
-});
-
-enableValidation({
-  form: '.popup__form[name="popup-form-profile"]',
-  submitBotton: '.popup__button-save',
-  buttonValid: 'popup__button-save_disable',
-  erorrText: 'Вы пропустили это поле.',
+  form: ".popup__form",
+  submitBotton: ".popup__button-save",
+  buttonValid: "popup__button-save_disable",
+  inputErrorClass: "popup__input_border_disabled",
 });

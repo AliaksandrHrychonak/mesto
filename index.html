@@ -40,11 +40,11 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="popup-form-profile" novalidate>
           <div class="popup__input-container">
-            <input class="popup__input popup__input_value_name" name="name-profile" id="name-profile" type="text" value="Жак-Ив Кусто" placeholder="Имя" minlength="2" maxlength="30">
+            <input class="popup__input popup__input_value_name" name="name-profile" id="name-profile" type="text" value="Жак-Ив Кусто" placeholder="Имя" minlength="2" maxlength="30" required>
             <p id="name-profile-error" class="error"></p>
           </div>
           <div class="popup__input-container">
-            <input class="popup__input popup__input_value_job" name="job-profile" id="job-profile" type="text" value="Исследователь океана" placeholder="Профессия" minlength="2" maxlength="200">
+            <input class="popup__input popup__input_value_job" name="job-profile" id="job-profile" type="text" value="Исследователь океана" placeholder="Профессия" minlength="2" maxlength="200" required>
             <p id="job-profile-error" class="error"></p>
           </div> 
           <button class="popup__button-save popup__button-save-profile" type="submit" name="Save" aria-label="Сохранить">Сохранить</button>
