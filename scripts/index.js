@@ -58,7 +58,8 @@ const elementsImage = document.querySelector(".elements__image");
 const list = document.querySelector(".elements__item");
 //template
 const itemTemplate = document.querySelector(".template");
-
+//import
+import {Card} from './card.js'
 
 function openModal(modal) {
   document.addEventListener("keydown", handleEscUp);
@@ -84,36 +85,6 @@ function formSubmitHandler(evt) {
   closePopup(popupProfile);
 }
 
-function deleteCard(element) {
-  element.target.closest(".elements__card").remove();
-}
-
-function likeCard(element) {
-  element.target.classList.toggle("button_like_active");
-}
-
-function cardAdd(name, link) {
-  const card = itemTemplate.content
-    .querySelector(".elements__card")
-    .cloneNode(true);
-  const buttonLike = card.querySelector(".elements__button-like");
-  const buttonDeleteCard = card.querySelector(".elements__button_delete");
-  const imageCard = card.querySelector(".elements__image");
-  const titleCard = card.querySelector(".elements__title");
-  imageCard.alt = name;
-  imageCard.src = link;
-  titleCard.textContent = name;
-  buttonLike.addEventListener("click", likeCard);
-  buttonDeleteCard.addEventListener("click", deleteCard);
-  imageCard.addEventListener("click", () => openImageCard(name, link));
-  return card;
-}
-
-initialCards.forEach(function (element) {
-  const newCard = cardAdd(element["name"], element["link"]);
-  list.append(newCard);
-});
-
 function submitNewCard(evt) {
   evt.preventDefault();
   list.prepend(cardAdd(nameCardInput.value, linkCardInput.value));
@@ -123,16 +94,9 @@ function submitNewCard(evt) {
   buttonSubmitNewCard.setAttribute("disabled", true);
 }
 
-function openImageCard(name, link) {
-  openModal(popupImage);
-  cardPopupImage.alt = name;
-  cardPopupImage.src = link;
-  cardPopupTitle.textContent = name;
-}
-
 buttonEdit.addEventListener("click", () => openModal(popupProfile));
 buttonAddCard.addEventListener("click", () => openModal(popupCard));
-buttonCloseCard.addEventListener("click", () => closePopup(popupCard));
+// buttonCloseCard.addEventListener("click", () => closePopup(popupCard));
 formElement.addEventListener("submit", formSubmitHandler);
 popupFormCard.addEventListener("submit", submitNewCard);
 
@@ -145,4 +109,10 @@ popups.forEach((popup) => {
       closePopup(popup);
     }
   });
+});
+
+initialCards.forEach((item) => {
+  const card = new Card(item, ".template");
+  const cardElement = card.generateCard();
+  list.append(cardElement);
 });

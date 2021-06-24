@@ -7,10 +7,12 @@ function enableValidation(config) {
 }
 
 function handleFormSubmit(event) {
-  const form = event.currentTarget;
+  event.preventDefault();
+  // const form = event.currentTarget;
 }
 
 function handleFormInput(event, config) {
+  
   const input = event.target;
   const form = event.currentTarget;
   setMessageError(input);
