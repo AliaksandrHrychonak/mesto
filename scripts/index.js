@@ -59,7 +59,7 @@ const list = document.querySelector(".elements__item");
 //template
 const itemTemplate = document.querySelector(".template");
 //import
-import {Card} from './card.js'
+import { Card } from "./card.js";
 
 function openModal(modal) {
   document.addEventListener("keydown", handleEscUp);
@@ -87,7 +87,11 @@ function formSubmitHandler(evt) {
 
 function submitNewCard(evt) {
   evt.preventDefault();
-  list.prepend(cardAdd(nameCardInput.value, linkCardInput.value));
+  const data = {};
+  data.link = linkCardInput.value;
+  data.name = nameCardInput.value;
+  const newElement = renderElement(data)
+  list.prepend(newElement);
   popupFormCard.reset();
   closePopup(popupCard);
   buttonSubmitNewCard.classList.add("popup__button-save_disable");
@@ -96,7 +100,6 @@ function submitNewCard(evt) {
 
 buttonEdit.addEventListener("click", () => openModal(popupProfile));
 buttonAddCard.addEventListener("click", () => openModal(popupCard));
-// buttonCloseCard.addEventListener("click", () => closePopup(popupCard));
 formElement.addEventListener("submit", formSubmitHandler);
 popupFormCard.addEventListener("submit", submitNewCard);
 
@@ -111,8 +114,15 @@ popups.forEach((popup) => {
   });
 });
 
-initialCards.forEach((item) => {
+function renderElement(item) {
   const card = new Card(item, ".template");
-  const cardElement = card.generateCard();
-  list.append(cardElement);
-});
+  return card.generateCard();
+}
+
+const renderElements = () => {
+  initialCards.forEach((item) => {
+    const cardElement = renderElement(item)
+    list.append(cardElement);
+  });
+};
+renderElements();

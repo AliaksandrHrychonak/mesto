@@ -8,11 +8,9 @@ function enableValidation(config) {
 
 function handleFormSubmit(event) {
   event.preventDefault();
-  // const form = event.currentTarget;
 }
 
 function handleFormInput(event, config) {
-  
   const input = event.target;
   const form = event.currentTarget;
   setMessageError(input);
