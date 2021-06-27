@@ -1,6 +1,6 @@
-import Card  from "./Сard.js";
-import FormValidator from "./FormValidator.js";
-import { data } from "./FormValidator.js";
+import Card  from "./card.js";
+import FormValidator from "./formValidator.js";
+import { data } from "./formValidator.js";
 
 const initialCards = [
   {
