@@ -1,3 +1,6 @@
+import { Card } from "./Card.js";
+import { FormValidator, data } from "./FormValidator.js";
+
 const initialCards = [
   {
     name: "Архыз",
@@ -48,8 +51,6 @@ const popupFormProfile = document.querySelector(".popup__form_profile");
 //cards
 const list = document.querySelector(".elements__item");
 //import
-import { Card } from "./Card.js";
-import { FormValidator, data } from "./FormValidator.js";
 
 export function openModal(modal) {
   document.addEventListener("keydown", handleEscUp);
