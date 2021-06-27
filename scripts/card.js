@@ -1,3 +1,5 @@
+import { openModal } from "./index.js";
+
 export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
@@ -14,15 +16,18 @@ export class Card {
   }
 
   _handleOpenPopup() {
-    const popupElement = document.querySelector(".popup_type_image");
-    popupElement.classList.add("popup_opened");
-    popupElement.querySelector(".popup__description").textContent = this._name;
-    popupElement.querySelector(".popup__image").src = this._link;
-    popupElement.querySelector(".popup__image").alt = this._name;
+    this._popupElement = document.querySelector(".popup_type_image");
+    openModal(this._popupElement);
+    this._popupElement.querySelector(".popup__description").textContent =
+      this._name;
+    this._popupElement.querySelector(".popup__image").src = this._link;
+    this._popupElement.querySelector(".popup__image").alt = this._name;
   }
 
   _handleLikeCard() {
-    this._element.querySelector(".elements__button-like").classList.toggle("button_like_active");
+    this._element
+      .querySelector(".elements__button-like")
+      .classList.toggle("button_like_active");
   }
 
   _handleDeleteCard() {
@@ -30,15 +35,21 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._element.querySelector(".elements__image").addEventListener("click", () => {
-      this._handleOpenPopup();
-    });
-    this._element.querySelector(".elements__button-like").addEventListener("click", () => {
-      this._handleLikeCard();
-    });
-    this._element.querySelector(".elements__button_delete").addEventListener("click", () => {
-      this._handleDeleteCard();
-    });
+    this._element
+      .querySelector(".elements__image")
+      .addEventListener("click", () => {
+        this._handleOpenPopup();
+      });
+    this._element
+      .querySelector(".elements__button-like")
+      .addEventListener("click", () => {
+        this._handleLikeCard();
+      });
+    this._element
+      .querySelector(".elements__button_delete")
+      .addEventListener("click", () => {
+        this._handleDeleteCard();
+      });
   }
 
   generateCard() {
@@ -50,5 +61,3 @@ export class Card {
     return this._element;
   }
 }
-
-
