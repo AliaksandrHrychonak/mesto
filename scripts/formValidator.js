@@ -5,7 +5,7 @@ export const data = {
   inputErrorClass: "popup__input_border_disabled",
 };
 
-export class FormValidator {
+export default class FormValidator {
   constructor(data, form) {
     this._submitBotton = data.submitBotton;
     this._buttonValid = data.buttonValid;
