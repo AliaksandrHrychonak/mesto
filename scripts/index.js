@@ -1,54 +1,23 @@
-import Card  from "./card.js";
-import FormValidator from "./formValidator.js";
-import { data } from "./formValidator.js";
-
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+import Card  from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import { data } from "./utils.js";
+import { initialCards } from "./utils.js";
 // popup
 export const popups = document.querySelectorAll(".popup");
-const popupForm = document.querySelector(".popup__container");
 const popupProfile = document.querySelector(".popup_type_profile");
 const popupCard = document.querySelector(".popup_type_card");
 // button
 const buttonEdit = document.querySelector(".profile__button-edit");
 const buttonAddCard = document.querySelector(".profile__button-add");
-const buttonSubmitNewCard = document.querySelector(
-  ".popup__button-save_submit_card"
-);
 // formElement
-const formElement = popupForm.querySelector(".popup__form");
+const popupFormCard = document.querySelector(".popup__form_card");
+const popupFormProfile = document.querySelector(".popup__form_profile");
 const nameInput = document.querySelector(".popup__input_value_name");
 const jobInput = document.querySelector(".popup__input_value_job");
 const profileName = document.querySelector(".profile__info-title");
 const profileJob = document.querySelector(".profile__info-subtitle");
 const nameCardInput = document.querySelector(".popup__input_value_title");
 const linkCardInput = document.querySelector(".popup__input_value_image");
-const popupFormCard = document.querySelector(".popup__form_card");
-const popupFormProfile = document.querySelector(".popup__form_profile");
 //cards
 const list = document.querySelector(".elements__item");
 //import
@@ -56,6 +25,10 @@ const list = document.querySelector(".elements__item");
 export function openModal(modal) {
   document.addEventListener("keydown", handleEscUp);
   modal.classList.add("popup_opened");
+  if (popupProfile.classList.contains("popup_opened")) {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
+  }
 }
 
 function closePopup(modal) {
@@ -70,7 +43,7 @@ const handleEscUp = (evt) => {
   }
 };
 
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
@@ -86,8 +59,7 @@ function submitNewCard(evt) {
   list.prepend(newElement);
   popupFormCard.reset();
   closePopup(popupCard);
-  buttonSubmitNewCard.classList.add("popup__button-save_disable");
-  buttonSubmitNewCard.setAttribute("disabled", true);
+  validateCard.toggleButtonState()
 }
 
 popups.forEach((popup) => {
@@ -121,5 +93,5 @@ validateCard.enableValidation();
 
 buttonEdit.addEventListener("click", () => openModal(popupProfile));
 buttonAddCard.addEventListener("click", () => openModal(popupCard));
-formElement.addEventListener("submit", formSubmitHandler);
+popupFormProfile.addEventListener("submit", handleProfileFormSubmit);
 popupFormCard.addEventListener("submit", submitNewCard);

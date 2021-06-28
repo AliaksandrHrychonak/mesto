@@ -27,7 +27,7 @@ export default class Card {
   _handleLikeCard() {
     this._element
       .querySelector(".elements__button-like")
-      .classList.toggle("button_like_active");
+      .classList.toggle("elements__button-like_active");
   }
 
   _handleDeleteCard() {

@@ -1,4 +1,4 @@
-.button_like_active {
+.elements__button-like_active {
   opacity: 1;
   background: #ffffff url(../../../../images/button-like-active.svg) no-repeat center/22px 19px;
 }

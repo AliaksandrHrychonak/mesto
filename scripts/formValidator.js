@@ -1,10 +1,3 @@
-export const data = {
-  input: ".popup__input",
-  submitBotton: ".popup__button-save",
-  buttonValid: "popup__button-save_disable",
-  inputErrorClass: "popup__input_border_disabled",
-};
-
 export default class FormValidator {
   constructor(data, form) {
     this._submitBotton = data.submitBotton;
@@ -22,19 +15,19 @@ export default class FormValidator {
     }
   };
 
-  _toggleButtonState = (form, submitBotton) => {
+  toggleButtonState = () => {
     if (this._form.checkValidity()) {
-      submitBotton.classList.remove(this._buttonValid);
-      submitBotton.removeAttribute("disabled");
+      this._form.querySelector(this._submitBotton).classList.remove(this._buttonValid);
+      this._form.querySelector(this._submitBotton).removeAttribute("disabled");
     } else {
-      submitBotton.classList.add(this._buttonValid);
-      submitBotton.setAttribute("disabled", true);
+      this._form.querySelector(this._submitBotton).classList.add(this._buttonValid);
+      this._form.querySelector(this._submitBotton).setAttribute("disabled", true);
     }
   };
 
   _setMessageError = (input) => {
-    const p = document.querySelector(`#${input.id}-error`);
-    p.textContent = input.validationMessage;
+    const errorMessage = this._form.querySelector(`#${input.id}-error`);
+    errorMessage.textContent = input.validationMessage;
   };
 
   enableValidation = () => {
@@ -44,14 +37,13 @@ export default class FormValidator {
     this._setEventListeners();
   };
 
-  _setEventListeners(form) {
+  _setEventListeners = () => {
     const inputs = Array.from(this._form.querySelectorAll(this._input));
-    const buttonSubmitForm = this._form.querySelector(this._submitBotton);
-    this._toggleButtonState(form, buttonSubmitForm);
+    this.toggleButtonState();
     inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._setInputError(input);
-        this._toggleButtonState(form, buttonSubmitForm);
+        this.toggleButtonState();
         this._setMessageError(input);
       });
     });
