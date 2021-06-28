@@ -1,5 +1,5 @@
-import Card  from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card  from "./сard.js";
+import FormValidator from "./formValidator.js";
 import { data } from "./utils.js";
 import { initialCards } from "./utils.js";
 // popup
