@@ -1,5 +1,5 @@
-import Card  from "./сard.js";
-import FormValidator from "./formValidator.js";
+import Card  from "./Card.js";
+import FormValidator from "./FormValidator.js";
 import { data } from "./utils.js";
 import { initialCards } from "./utils.js";
 // popup
@@ -28,6 +28,7 @@ export function openModal(modal) {
   if (popupProfile.classList.contains("popup_opened")) {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
+    // validateProfile.deleteMessageError()
   }
 }
 
@@ -63,7 +64,7 @@ function submitNewCard(evt) {
 }
 
 popups.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
+  popup.addEventListener("mousedown", (evt) => {
     if (evt.target.classList.contains("popup_opened")) {
       closePopup(popup);
     }

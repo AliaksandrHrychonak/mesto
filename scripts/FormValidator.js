@@ -5,6 +5,7 @@ export default class FormValidator {
     this._inputErrorClass = data.inputErrorClass;
     this._form = form;
     this._input = data.input;
+    this._inputs = Array.from(this._form.querySelectorAll(this._input));
   }
 
   _setInputError = (input) => {
@@ -25,6 +26,13 @@ export default class FormValidator {
     }
   };
 
+  // deleteMessageError = (input) => {
+  //   const errorMessage = this._form.querySelector(`#${input.id}-error`);
+  //   input.classList.remove(this._inputErrorClass)
+  //   errorMessage.classList.remove(this._input.validationMessage)
+  //   errorMessage.textContent = ' '
+  // };
+
   _setMessageError = (input) => {
     const errorMessage = this._form.querySelector(`#${input.id}-error`);
     errorMessage.textContent = input.validationMessage;
@@ -38,9 +46,8 @@ export default class FormValidator {
   };
 
   _setEventListeners = () => {
-    const inputs = Array.from(this._form.querySelectorAll(this._input));
     this.toggleButtonState();
-    inputs.forEach((input) => {
+    this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._setInputError(input);
         this.toggleButtonState();
