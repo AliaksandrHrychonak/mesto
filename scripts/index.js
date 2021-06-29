@@ -18,6 +18,8 @@ const profileName = document.querySelector(".profile__info-title");
 const profileJob = document.querySelector(".profile__info-subtitle");
 const nameCardInput = document.querySelector(".popup__input_value_title");
 const linkCardInput = document.querySelector(".popup__input_value_image");
+const errorName = document.getElementById("name-profile-error")
+const errorJob = document.getElementById("job-profile-error")
 //cards
 const list = document.querySelector(".elements__item");
 //import
@@ -28,7 +30,10 @@ export function openModal(modal) {
   if (popupProfile.classList.contains("popup_opened")) {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
-    // validateProfile.deleteMessageError()
+    errorJob.textContent = '';
+    errorName.textContent = '';
+    nameInput.classList.remove("popup__input_border_disabled")
+    jobInput.classList.remove("popup__input_border_disabled")
   }
 }
 

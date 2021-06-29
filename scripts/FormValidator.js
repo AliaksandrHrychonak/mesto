@@ -26,13 +26,6 @@ export default class FormValidator {
     }
   };
 
-  // deleteMessageError = (input) => {
-  //   const errorMessage = this._form.querySelector(`#${input.id}-error`);
-  //   input.classList.remove(this._inputErrorClass)
-  //   errorMessage.classList.remove(this._input.validationMessage)
-  //   errorMessage.textContent = ' '
-  // };
-
   _setMessageError = (input) => {
     const errorMessage = this._form.querySelector(`#${input.id}-error`);
     errorMessage.textContent = input.validationMessage;
