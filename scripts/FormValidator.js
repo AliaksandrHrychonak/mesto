@@ -6,6 +6,7 @@ export default class FormValidator {
     this._form = form;
     this._input = data.input;
     this._inputs = Array.from(this._form.querySelectorAll(this._input));
+    this._button = this._form.querySelector(this._submitBotton);
   }
 
   _setInputError = (input) => {
@@ -18,11 +19,11 @@ export default class FormValidator {
 
   toggleButtonState = () => {
     if (this._form.checkValidity()) {
-      this._form.querySelector(this._submitBotton).classList.remove(this._buttonValid);
-      this._form.querySelector(this._submitBotton).removeAttribute("disabled");
+      this._button.classList.remove(this._buttonValid);
+      this._button.removeAttribute("disabled");
     } else {
-      this._form.querySelector(this._submitBotton).classList.add(this._buttonValid);
-      this._form.querySelector(this._submitBotton).setAttribute("disabled", true);
+      this._button.classList.add(this._buttonValid);
+      this._button.setAttribute("disabled", true);
     }
   };
 

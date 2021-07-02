@@ -27,14 +27,6 @@ const list = document.querySelector(".elements__item");
 export function openModal(modal) {
   document.addEventListener("keydown", handleEscUp);
   modal.classList.add("popup_opened");
-  if (popupProfile.classList.contains("popup_opened")) {
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-    errorJob.textContent = '';
-    errorName.textContent = '';
-    nameInput.classList.remove("popup__input_border_disabled")
-    jobInput.classList.remove("popup__input_border_disabled")
-  }
 }
 
 function closePopup(modal) {
@@ -97,7 +89,15 @@ validateProfile.enableValidation();
 const validateCard = new FormValidator(data, popupFormCard);
 validateCard.enableValidation();
 
-buttonEdit.addEventListener("click", () => openModal(popupProfile));
+buttonEdit.addEventListener("click", () => {
+  openModal(popupProfile)
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  errorJob.textContent = '';
+  errorName.textContent = '';
+  nameInput.classList.remove("popup__input_border_disabled")
+  jobInput.classList.remove("popup__input_border_disabled")
+});
 buttonAddCard.addEventListener("click", () => openModal(popupCard));
 popupFormProfile.addEventListener("submit", handleProfileFormSubmit);
 popupFormCard.addEventListener("submit", submitNewCard);

@@ -20,7 +20,7 @@
 /* elements */
 @import "../blocks/elements/elements.css";
 @import "../blocks/elements/__item/elements__item.css";
-@import "../blocks/elements/__button_delete/elements__button_delete.css";
+@import "../blocks/elements/__button-delete/elements__button-delete.css";
 @import "../blocks/elements/__card/elements__card.css";
 @import "../blocks/elements/__image/elements__image.css";
 @import "../blocks/elements/__information/elements__information.css";

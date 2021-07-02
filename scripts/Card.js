@@ -47,7 +47,7 @@ export default class Card {
         this._handleLikeCard();
       });
     this._element
-      .querySelector(".elements__button_delete")
+      .querySelector(".elements__button-delete")
       .addEventListener("click", () => {
         this._handleDeleteCard();
       });
