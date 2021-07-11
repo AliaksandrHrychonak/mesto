@@ -1,7 +1,15 @@
-import Card  from "./Card.js";
+import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { data } from "./utils.js";
-import { initialCards } from "./utils.js";
+import Popup from "./Popup.js";
+import Section from "./Section.js";
+import PopupWithForm from "./PopupWithForm.js";
+import PopupWithImage from "./PopupWithImage.js"
+import {
+  data
+} from "./utils.js";
+import {
+  initialCards
+} from "./utils.js";
 // popup
 export const popups = document.querySelectorAll(".popup");
 const popupProfile = document.querySelector(".popup_type_profile");
@@ -21,31 +29,50 @@ const linkCardInput = document.querySelector(".popup__input_value_image");
 const errorName = document.getElementById("name-profile-error")
 const errorJob = document.getElementById("job-profile-error")
 //cards
-const list = document.querySelector(".elements__item");
-//import
+const containerSelector = document.querySelector(".elements__item");
+const popupImage = document.querySelector(".popup_type_image")
 
-export function openModal(modal) {
-  document.addEventListener("keydown", handleEscUp);
-  modal.classList.add("popup_opened");
-}
-
-function closePopup(modal) {
-  document.removeEventListener("keydown", handleEscUp);
-  modal.classList.remove("popup_opened");
-}
-
-const handleEscUp = (evt) => {
-  if (evt.key === "Escape") {
-    const activePopup = document.querySelector(".popup_opened");
-    closePopup(activePopup);
+const defaultCardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item, ".template", handleCardClick);
+    const cardElement = card.generateCard();
+    defaultCardList.addItem(cardElement);
   }
-};
+}, containerSelector);
+defaultCardList.renderItems();
+
+const popupImageW = new PopupWithImage(popupImage);
+popupImageW.setEventListeners()
+
+function handleCardClick(name, link) {
+  popupImageW.open(name, link);
+}
+
+const formProfile = new PopupWithForm(popupProfile)
+formProfile.setEventListeners()
+buttonEdit.addEventListener('click', () => {
+  formProfile.open()
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  errorJob.textContent = '';
+  errorName.textContent = '';
+  nameInput.classList.remove("popup__input_border_disabled")
+  jobInput.classList.remove("popup__input_border_disabled")
+})
+
+const formCard = new PopupWithForm(popupCard)
+formCard.setEventListeners()
+buttonAddCard.addEventListener('click', () => {
+  formCard.open()
+})
+
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(popupProfile);
+  formProfile.close()
 }
 
 function submitNewCard(evt) {
@@ -53,51 +80,19 @@ function submitNewCard(evt) {
   const data = {};
   data.link = linkCardInput.value;
   data.name = nameCardInput.value;
-  const newElement = renderElement(data);
-  list.prepend(newElement);
+  const cardNew = new Card(data, ".template", handleCardClick) 
+  const newElement = cardNew.generateCard(data); //error
+  containerSelector.prepend(newElement);
   popupFormCard.reset();
-  closePopup(popupCard);
+  formCard.close()
   validateCard.toggleButtonState()
 }
 
-popups.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup_opened")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("popup__button-close")) {
-      closePopup(popup);
-    }
-  });
-});
-
-function renderElement(item) {
-  const card = new Card(item, ".template");
-  return card.generateCard();
-}
-
-const renderElements = () => {
-  initialCards.forEach((item) => {
-    const cardElement = renderElement(item);
-    list.append(cardElement);
-  });
-};
-renderElements();
 
 const validateProfile = new FormValidator(data, popupFormProfile);
 validateProfile.enableValidation();
 const validateCard = new FormValidator(data, popupFormCard);
 validateCard.enableValidation();
 
-buttonEdit.addEventListener("click", () => {
-  openModal(popupProfile)
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  errorJob.textContent = '';
-  errorName.textContent = '';
-  nameInput.classList.remove("popup__input_border_disabled")
-  jobInput.classList.remove("popup__input_border_disabled")
-});
-buttonAddCard.addEventListener("click", () => openModal(popupCard));
 popupFormProfile.addEventListener("submit", handleProfileFormSubmit);
 popupFormCard.addEventListener("submit", submitNewCard);
