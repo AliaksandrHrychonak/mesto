@@ -1,15 +1,15 @@
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import Popup from "./Popup.js";
-import Section from "./Section.js";
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js"
+import "./index.css";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js"
 import {
   data
-} from "./utils.js";
+} from "../components/utils/utils.js";
 import {
   initialCards
-} from "./utils.js";
+} from "../components/utils/utils.js";
 // popup
 export const popups = document.querySelectorAll(".popup");
 const popupProfile = document.querySelector(".popup_type_profile");
@@ -67,7 +67,6 @@ buttonAddCard.addEventListener('click', () => {
   formCard.open()
 })
 
-
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -81,7 +80,7 @@ function submitNewCard(evt) {
   data.link = linkCardInput.value;
   data.name = nameCardInput.value;
   const cardNew = new Card(data, ".template", handleCardClick) 
-  const newElement = cardNew.generateCard(data); //error
+  const newElement = cardNew.generateCard(data); 
   containerSelector.prepend(newElement);
   popupFormCard.reset();
   formCard.close()
