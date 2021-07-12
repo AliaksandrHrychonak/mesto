@@ -48,5 +48,5 @@ export default class FormValidator {
         this._setMessageError(input);
       });
     });
-  }
+  };
 }
