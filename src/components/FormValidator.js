@@ -32,6 +32,14 @@ export default class FormValidator {
     errorMessage.textContent = input.validationMessage;
   };
 
+  removeMessageError = () => {
+    this._inputs.forEach((input) => {
+      const errorMessage = this._form.querySelector(`#${input.id}-error`);
+      errorMessage.textContent = "";
+      input.classList.remove(this._inputErrorClass);
+    });
+  }
+
   enableValidation = () => {
     this._form.addEventListener("submit", function (evt) {
       evt.preventDefault();

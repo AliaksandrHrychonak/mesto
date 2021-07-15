@@ -9,12 +9,11 @@ export default class Section {
     this._container.append(element);
   }
 
-  clear() {
-    this._container.innerHTML = "";
+  addNewItem(element) {
+    this._container.prepend(element);
   }
 
   renderItems() {
-    this.clear();
     this._renderedItems.forEach((item) => {
       this._renderer(item);
     });
