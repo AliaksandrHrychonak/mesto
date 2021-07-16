@@ -30,7 +30,7 @@ const defaultCardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      renderCardItems(item);
+      defaultCardList.addItem(renderCardItems(item))
     },
   },
   containerSelector
@@ -42,8 +42,7 @@ popupImageW.setEventListeners();
 
 function renderCardItems(item) {
   const card = new Card(item, ".template", handleCardClick);
-  const cardElement = card.generateCard();
-  defaultCardList.addItem(cardElement);
+  return card.generateCard();
 }
 
 function handleCardClick(name, link) {
@@ -78,10 +77,7 @@ function submitNewCard(evt) {
   const data = {};
   data.link = linkCardInput.value;
   data.name = nameCardInput.value;
-  const cardNew = new Card(data, ".template", handleCardClick);
-  const newElement = cardNew.generateCard(data);
-  defaultCardList.addNewItem(newElement);
-  popupFormCard.reset();
+  defaultCardList.addNewItem(renderCardItems(data));
   formCard.close();
   validateCard.toggleButtonState();
 }
