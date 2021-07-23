@@ -2,6 +2,7 @@
   border-radius: 50%;
   width: 120px;
   height: 120px;
+  cursor: url(../../../images/cursor.svg), pointer;
 }
 
 @media screen and (max-width: 735px) {

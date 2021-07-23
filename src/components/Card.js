@@ -1,9 +1,13 @@
 export default class Card {
-  constructor(data, cardSelector, handleCardClick) {
+  constructor({ data, cardSelector, userId, handleCardClick, handleLikeClick}) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._userId = userId
+    this._id = data._id
+    this._handleLikeClick = handleLikeClick
+    this._likes = data.likes
   }
 
   _getTemplate() {
@@ -11,13 +15,29 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".elements__card")
       .cloneNode(true);
-    this._element = cardElement;
+    return cardElement;
   }
 
   _handleLikeCard() {
-    this._element
-      .querySelector(".elements__button-like")
-      .classList.toggle("elements__button-like_active");
+    this._handleLikeClick(this._id)
+      .then((data) => {
+        this._buttonLike.classList.toggle('elements__button-like_active');
+        this._likesCounter.textContent = data.likes.length;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+
+  setLike(card) {
+    if (this._likes.some(person => person._id === this._UserId)) {
+      this._buttonLike.classList.add('button_type_like_active');
+    }
+  }
+
+  checkLike(card) {
+    this._likesCounter.textContent = this._likes.length;
   }
 
   _handleDeleteCard() {
@@ -26,29 +46,34 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._element
-      .querySelector(".elements__image")
-      .addEventListener("click", () => {
+    this._imageCard.addEventListener("click", () => {
         this._handleCardClick(this._link, this._name);
       });
-    this._element
-      .querySelector(".elements__button-like")
+    this._buttonLike
       .addEventListener("click", () => {
         this._handleLikeCard();
       });
-    this._element
-      .querySelector(".elements__button-delete")
+    this._buttonDelete
       .addEventListener("click", () => {
         this._handleDeleteCard();
       });
   }
 
   generateCard() {
-    this._getTemplate();
+    this._element = this._getTemplate();
+    
+
+    this._titleCard = this._element.querySelector(".elements__title")
+    this._imageCard = this._element.querySelector(".elements__image")
+    this._imageCard = this._element.querySelector(".elements__image")
+    this._titleCard.textContent = this._name;
+    this._imageCard.src = this._link;
+    this._imageCard.alt = this._name;
+
+    this._buttonDelete = this._element.querySelector(".elements__button-delete")
+    this._buttonLike = this._element.querySelector(".elements__button-like")
+    this._likesCounter = this._element.querySelector(".elements__quantity");
     this._setEventListeners();
-    this._element.querySelector(".elements__title").textContent = this._name;
-    this._element.querySelector(".elements__image").src = this._link;
-    this._element.querySelector(".elements__image").alt = this._name;
     return this._element;
   }
 }
