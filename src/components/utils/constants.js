@@ -1,6 +1,6 @@
 export const popupProfile = document.querySelector(".popup_type_profile");
 export const popupCard = document.querySelector(".popup_type_card");
-export const popupConfirm = document.querySelector(".popup_type_confirm");
+export const popupConfirmDel = document.querySelector(".popup_type_confirm");
 export const popupAvatar = document.querySelector(".popup_type_avatar");
 export const avatarProfile = document.querySelector(".profile__avatar")
 // button

@@ -1,13 +1,19 @@
 export default class Card {
-  constructor({ data, cardSelector, userId, handleCardClick, handleLikeClick}) {
+  constructor({ data, cardSelector, userId, handleCardClick, handleLikeClick, handleDeleteCard}) {
     this._name = data.name;
     this._link = data.link;
+
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+
+    this._ownerId = data.owner._id;
+    this._cardId = data._id;
     this._userId = userId
     this._id = data._id
-    this._handleLikeClick = handleLikeClick
     this._likes = data.likes
+
+    this._handleLikeClick = handleLikeClick
+    this._handleDeleteCard = handleDeleteCard
   }
 
   _getTemplate() {
@@ -19,9 +25,10 @@ export default class Card {
   }
 
   _handleLikeCard() {
-    this._handleLikeClick(this._id)
+    this._handleLikeClick(this._cardId, this.handleLike)
       .then((data) => {
         this._buttonLike.classList.toggle('elements__button-like_active');
+        this.handleLiked = !this.handkeLiked;
         this._likesCounter.textContent = data.likes.length;
       })
       .catch((err) => {
@@ -30,14 +37,15 @@ export default class Card {
   }
 
 
-  setLike(card) {
+  setLike() {
     if (this._likes.some(person => person._id === this._UserId)) {
-      this._buttonLike.classList.add('button_type_like_active');
+      this._buttonLike.classList.add('elements__button-like_active');
     }
   }
 
-  checkLike(card) {
+  checkLike() {
     this._likesCounter.textContent = this._likes.length;
+    console.log(this._likes.length)
   }
 
   _handleDeleteCard() {
@@ -55,7 +63,7 @@ export default class Card {
       });
     this._buttonDelete
       .addEventListener("click", () => {
-        this._handleDeleteCard();
+        this._handleDeleteCard(this);
       });
   }
 
@@ -73,6 +81,8 @@ export default class Card {
     this._buttonDelete = this._element.querySelector(".elements__button-delete")
     this._buttonLike = this._element.querySelector(".elements__button-like")
     this._likesCounter = this._element.querySelector(".elements__quantity");
+
+
     this._setEventListeners();
     return this._element;
   }

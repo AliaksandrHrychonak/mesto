@@ -13,7 +13,7 @@ export default class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      method: "GET",
+      method: 'GET',
       headers: this._headers,  
     })
     .then(this._handleResponce);
@@ -27,9 +27,9 @@ export default class Api {
     .then(this._handleResponce);
   }
 
-  setUserInfo(name, info) {
+  setUserInfo( name, info ) {
     return fetch(`${this._baseUrl}/users/me`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
         name: name,
@@ -39,32 +39,41 @@ export default class Api {
     .then(this._handleResponce);
   }
 
-  postCard(name, link) {
+  postCard( name, image ) {
     return fetch(`${this._baseUrl}/cards`, {
-      method: "POST",
+      method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
         name: name,
-        link: link,
+        link: image,
       })
     })
     .then(this._handleResponce);
   }
   
-  setAvatar(avatarLink) {
+  setAvatar( avatar ) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        avatar: avatarLink
+        avatar: avatar
       })
     })
+    .then(console.log(avatarLink))
     .then(this._checkResponse);
   }
 
-  LikeCard(id){
-    return fetch(`${this._url}/cards/likes/${id}`, {
-      method: "PUT",
+  LikeCard( cardId, handleLike ) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: handleLike ? 'DELETE' : 'PUT' ,
+      headers: this._headers,
+    })
+      .then(this._checkResponse);
+  }
+
+  deleteCard( cardId ) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
       headers: this._headers,
     })
       .then(this._checkResponse);
