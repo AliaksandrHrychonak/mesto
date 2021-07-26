@@ -11,7 +11,10 @@
 /* profile */
 @import "../blocks/profile/profile.css";
 @import "../blocks/profile/__item/profile__item.css";
+@import "../blocks/profile/__section/profile__section.css";
 @import "../blocks/profile/__avatar/profile__avatar.css";
+@import "../blocks/profile/__avatar-edit/profile__avatar-edit.css";
+@import "../blocks/profile/__avatar-edit/_type/profile__avatar-edit_type_active.css";
 @import "../blocks/profile/__info/profile__info.css";
 @import "../blocks/profile/__button-edit/profile__button-edit.css";
 @import "../blocks/profile/__button-add/profile__button-add.css";

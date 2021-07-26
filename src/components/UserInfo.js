@@ -10,7 +10,6 @@ export default class UserInfo {
     infoObject.name = this._nameSelector.textContent;
     infoObject.info = this._infoSelector.textContent;
     infoObject.avatar = this._avatar.src;
-    console.log(infoObject);
     return infoObject;
   }
 

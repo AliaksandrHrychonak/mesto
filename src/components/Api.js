@@ -59,16 +59,23 @@ export default class Api {
         avatar: avatar
       })
     })
-    .then(console.log(avatarLink))
-    .then(this._checkResponse);
+    .then(this._handleResponce);
   }
 
-  LikeCard( cardId, handleLike ) {
+  LikeCard( cardId ) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
-      method: handleLike ? 'DELETE' : 'PUT' ,
+      method: 'PUT',
       headers: this._headers,
     })
-      .then(this._checkResponse);
+    .then(this._handleResponce);
+  }
+
+  DeleteLikeCard( cardId ) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(this._handleResponce);
   }
 
   deleteCard( cardId ) {
@@ -76,7 +83,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-      .then(this._checkResponse);
+    .then(this._handleResponce);
   }
 
 }
