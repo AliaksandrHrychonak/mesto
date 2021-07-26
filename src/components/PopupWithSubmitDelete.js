@@ -4,7 +4,7 @@ export default class PopupWithSubmitDelete extends Popup {
   constructor({popupSelector, handleButtonDelete}) {
     super(popupSelector)
     this._handleButtonDelete = handleButtonDelete;
-    this._deleteButton = this._popupSelector.querySelector('.popup__button_type_conf')
+    this._deleteButton = this._popupSelector.querySelector('.popup__button-save_type_delete')
   }
 
   _setEventListeners() {
