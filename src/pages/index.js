@@ -6,13 +6,13 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import PopupWithConfirm from "../components/PopupWithConfirm.js";
+import PopupWithSubmitDelete from "../components/PopupWithSubmitDelete.js";
 import {
   popupProfile,
   popupCard,
   popupAvatar,
   profileAvatarEdit,
-  popupConfirmDel,
+  popupWithDeleteCard,
   buttonEdit,
   buttonAddCard,
   popupFormProfile,
@@ -83,14 +83,14 @@ function renderCardItems(data) {
       const buttonLike = element.querySelector(".elements__button-like");
       const likeQuantity = element.querySelector(".elements__quantity");
       if (!buttonLike.classList.contains("elements__button-like_active")) {
-        api.LikeCard(cardId)
+        api.likeCard(cardId)
         .then((data) => {
           buttonLike.classList.add("elements__button-like_active");
           likeQuantity.textContent = data.likes.length;
           return
         });
       } else {
-        api.DeleteLikeCard(cardId)
+        api.deleteLikeCard(cardId)
         .then((data) => {
           buttonLike.classList.remove("elements__button-like_active");
           likeQuantity.textContent = data.likes.length;
@@ -99,28 +99,28 @@ function renderCardItems(data) {
       }
     },
     handleDeleteCard: (objectThisCard) => {
-      popupConfirmDelete.objectThisCard = objectThisCard;
-      popupConfirmDelete.open()
+      popupWithSubmitDelete.objectThisCard = objectThisCard;
+      popupWithSubmitDelete.open()
     },
   });
   return card.generateCard();
 }
 
-const popupConfirmDelete = new PopupWithConfirm({
-  popupSelector: popupConfirmDel,
-  handleButtonConfirm: () => {
-    const cardId = popupConfirmDelete.objectThisCard._cardId
+const popupWithSubmitDelete = new PopupWithSubmitDelete({
+  popupSelector: popupWithDeleteCard,
+  handleButtonDelete: () => {
+    const cardId = popupWithSubmitDelete.objectThisCard._cardId
     api.deleteCard(cardId)
       .then(() => {
-        popupConfirmDelete.objectThisCard.deleteCard();
-        popupConfirmDelete.close();
+        popupWithSubmitDelete.objectThisCard.deleteCard();
+        popupWithSubmitDelete.close();
       })
       .catch((err) => {
         console.log(err);
       });
   },
 });
-popupConfirmDelete.setEventListeners();
+popupWithSubmitDelete.setEventListeners();
 
 const formAvatar = new PopupWithForm({
   popupSelector: popupAvatar,
