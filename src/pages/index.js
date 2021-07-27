@@ -26,11 +26,16 @@ import {
   info,
   avatar,
   data
-} from "../components/utils/constants.js";
+} from "../utils/constants.js";
 
-function loadApi (popupSelector) {
-  const buttonSubmitPopup = popupSelector.querySelector('.popup__button-save')
-  buttonSubmitPopup.textContent = 'Сохранение...'
+function loadApi(popupSelector, load) {
+  if (load === true) {
+    const buttonSubmitPopup = popupSelector.querySelector('.popup__button-save')
+    buttonSubmitPopup.textContent = 'Сохранение...'
+  } else {
+    const buttonSubmitPopup = popupSelector.querySelector('.popup__button-save')
+    buttonSubmitPopup.textContent = 'Сохранить'
+  }
 }
 const userInfo = new UserInfo(name, info, avatar)
 let userId
@@ -51,25 +56,26 @@ api.getUserInfo()
   })
   .catch((err) => {
     console.log(err);
-  });
-
-
-api.getInitialCards()
-  .then((data) => {
-    defaultCardList = new Section(
-      {
+  })
+  .then(() => {
+    api.getInitialCards()
+    .then((data) => {
+      defaultCardList = new Section({
         items: data,
         renderer: (item) => {
           defaultCardList.addItem(renderCardItems(item));
         },
         containerSelector: containerSelector,
-      },
-    );
-    defaultCardList.renderItems();
+      }, );
+      defaultCardList.renderItems();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   })
   .catch((err) => {
-    console.log(err);
-  });
+    console.log(err)
+  })
 
 function renderCardItems(data) {
   const card = new Card({
@@ -84,90 +90,110 @@ function renderCardItems(data) {
       const likeQuantity = element.querySelector(".elements__quantity");
       if (!buttonLike.classList.contains("elements__button-like_active")) {
         api.likeCard(cardId)
-        .then((data) => {
-          buttonLike.classList.add("elements__button-like_active");
-          likeQuantity.textContent = data.likes.length;
-          return
-        });
+          .then((data) => {
+            buttonLike.classList.add("elements__button-like_active");
+            likeQuantity.textContent = data.likes.length;
+            return
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       } else {
         api.deleteLikeCard(cardId)
-        .then((data) => {
-          buttonLike.classList.remove("elements__button-like_active");
-          likeQuantity.textContent = data.likes.length;
-          return
-        });
+          .then((data) => {
+            buttonLike.classList.remove("elements__button-like_active");
+            likeQuantity.textContent = data.likes.length;
+            return
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     },
     handleDeleteCard: (objectThisCard) => {
       popupWithSubmitDelete.objectThisCard = objectThisCard;
       popupWithSubmitDelete.open()
+      console.log(objectThisCard)
     },
   });
   return card.generateCard();
 }
 
 const popupWithSubmitDelete = new PopupWithSubmitDelete({
-  popupSelector: popupWithDeleteCard,
+  popupSelector: '.popup_type_delete',
   handleButtonDelete: () => {
     const cardId = popupWithSubmitDelete.objectThisCard._cardId
     api.deleteCard(cardId)
       .then(() => {
         popupWithSubmitDelete.objectThisCard.deleteCard();
-        popupWithSubmitDelete.close();
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        popupWithSubmitDelete.close();
+      })
   },
 });
 popupWithSubmitDelete.setEventListeners();
 
 const formAvatar = new PopupWithForm({
-  popupSelector: popupAvatar,
+  popupSelector: '.popup_type_avatar',
   handleFormSubmit: (info) => {
-    loadApi(popupAvatar)
+    loadApi(popupAvatar, true)
     api
       .setAvatar(info.avatar)
       .then((data) => {
-        console.log(data.avatar);
-        userInfo.setUserInfo(data.avatar);
+        userInfo.setUserInfo(data);
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        loadApi(popupAvatar, false)
+        formAvatar.close()
+      })
   },
 });
 formAvatar.setEventListener();
 
 const formProfile = new PopupWithForm({
-  popupSelector: popupProfile,
+  popupSelector: '.popup_type_profile',
   handleFormSubmit: (info) => {
-    loadApi(popupProfile)
+    loadApi(popupProfile, true)
     api.setUserInfo(info.name, info.info)
       .then((data) => {
         userInfo.setUserInfo(data);
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        loadApi(popupProfile, false)
+        formProfile.close()
+      })
   },
 });
 formProfile.setEventListener();
 
-const popupImageW = new PopupWithImage(popupImage);
+const popupImageW = new PopupWithImage('.popup_type_image');
 popupImageW.setEventListeners();
 
 const formCard = new PopupWithForm({
-  popupSelector: popupCard,
+  popupSelector: '.popup_type_card',
   handleFormSubmit: (data) => {
-    loadApi(popupCard)
+    loadApi(popupCard, true)
     api.postCard(data.name, data.image)
       .then((data) => {
         defaultCardList.addNewItem(renderCardItems(data));
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(() => {
+        loadApi(popupCard, false)
+        formCard.close()
+      })
   },
 });
 formCard.setEventListener();
@@ -197,12 +223,3 @@ profileAvatarEdit.addEventListener("click", () => {
   validateAvatar.removeMessageError();
   validateAvatar.toggleButtonState();
 });
-
-profileAvatarEdit.addEventListener('mouseenter', () => {
-  profileAvatarEdit.classList.add('profile__avatar-edit_type_active')
-})
-profileAvatarEdit.addEventListener('mouseleave', () => {
-  profileAvatarEdit.classList.remove('profile__avatar-edit_type_active')
-});
-
-
