@@ -28,14 +28,21 @@ import {
   data
 } from "../utils/constants.js";
 
-function loadApi(popupSelector, load) {
-  if (load === true) {
-    const buttonSubmitPopup = popupSelector.querySelector('.popup__button-save')
-    buttonSubmitPopup.textContent = 'Сохранение...'
+function loadApi(popup, load) {
+  const buttonSubmitPopup = popup.querySelector('.popup__button-save')
+  if (popup !== popupWithDeleteCard) {
+    if (load === true) {
+      buttonSubmitPopup.textContent = 'Сохранение...'
+    } else {
+      buttonSubmitPopup.textContent = 'Сохранить'
+    }
   } else {
-    const buttonSubmitPopup = popupSelector.querySelector('.popup__button-save')
-    buttonSubmitPopup.textContent = 'Сохранить'
-  }
+    if (load === true) {
+      buttonSubmitPopup.textContent = 'Удаление...'
+    } else {
+      buttonSubmitPopup.textContent = 'Да'
+    }
+  }  
 }
 const userInfo = new UserInfo(name, info, avatar)
 let userId
@@ -113,7 +120,6 @@ function renderCardItems(data) {
     handleDeleteCard: (objectThisCard) => {
       popupWithSubmitDelete.objectThisCard = objectThisCard;
       popupWithSubmitDelete.open()
-      console.log(objectThisCard)
     },
   });
   return card.generateCard();
@@ -123,15 +129,17 @@ const popupWithSubmitDelete = new PopupWithSubmitDelete({
   popupSelector: '.popup_type_delete',
   handleButtonDelete: () => {
     const cardId = popupWithSubmitDelete.objectThisCard._cardId
+    loadApi(popupWithDeleteCard, true)
     api.deleteCard(cardId)
       .then(() => {
         popupWithSubmitDelete.objectThisCard.deleteCard();
+        popupWithSubmitDelete.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
-        popupWithSubmitDelete.close();
+        loadApi(popupWithDeleteCard, false)
       })
   },
 });
@@ -145,13 +153,13 @@ const formAvatar = new PopupWithForm({
       .setAvatar(info.avatar)
       .then((data) => {
         userInfo.setUserInfo(data);
+        formAvatar.close()
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         loadApi(popupAvatar, false)
-        formAvatar.close()
       })
   },
 });
@@ -164,13 +172,13 @@ const formProfile = new PopupWithForm({
     api.setUserInfo(info.name, info.info)
       .then((data) => {
         userInfo.setUserInfo(data);
+        formProfile.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         loadApi(popupProfile, false)
-        formProfile.close()
       })
   },
 });
@@ -186,13 +194,13 @@ const formCard = new PopupWithForm({
     api.postCard(data.name, data.image)
       .then((data) => {
         defaultCardList.addNewItem(renderCardItems(data));
+        formCard.close()
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         loadApi(popupCard, false)
-        formCard.close()
       })
   },
 });
