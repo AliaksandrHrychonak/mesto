@@ -11,5 +11,5 @@
 -- Webpack 
 -- OOP
 
-* [Ссылка на страницу проекта](https://aliaksandrhrychonak.github.io/mesto/)
+* [Ссылка на страницу проекта](https://aliaksandrhrychonak.github.io/mesto/index.html)
 
