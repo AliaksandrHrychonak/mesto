@@ -19,5 +19,5 @@
 #### •‎ Валидация форм.
 ### Стек: 
 #### HTML, CSS, JS, Webpack, API, Figma.
-### Ссылка на проект: https://aliaksandrhrychonak.github.io/mesto/
-### Ссылка на GitHub: https://github.com/AliaksandrHrychonak/mesto
+#### Ссылка на проект: https://aliaksandrhrychonak.github.io/mesto/
+#### Ссылка на GitHub: https://github.com/AliaksandrHrychonak/mesto
