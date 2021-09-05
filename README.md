@@ -6,7 +6,8 @@
 •‎ редактирование информации о себе и редактирования профиля.
 •‎ добавление, лайк, удаление фотографий.
 •‎ валидация форм.
-Стек: HTML, CSS, JS, Webpack, Api, Figma.
-Ссылка на проект: https://aliaksandrhrychonak.github.io/mesto/
-Ссылка на GitHub: https://github.com/AliaksandrHrychonak/mesto
+### Стек: 
+HTML, CSS, JS, Webpack, Api, Figma.
+### Ссылка на проект: https://aliaksandrhrychonak.github.io/mesto/
+### Ссылка на GitHub: https://github.com/AliaksandrHrychonak/mesto
 
