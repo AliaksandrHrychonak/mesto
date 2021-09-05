@@ -6,7 +6,7 @@
 #### NodeJS - https://nodejs.org/en/
 #### NPM - реестр программного обеспечения
 ## Установка
-##### git clone 
+##### git clone https://github.com/AliaksandrHrychonak/mesto.git - Клонируйте репозиторий себе
 ##### npm install - установит все необходимые зависимости
 ##### npm run dev - Запуск разработки 
 ##### npm run build - Собрать проект 
