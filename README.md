@@ -1,15 +1,12 @@
 # Проект 4: Mesto
 
 ### Обзор
-Проект Mesto
-
-В проекте использовались:
--- FlexBox
--- Grid
--- JavaScript
--- Bem Nested
--- Webpack 
--- OOP
-
-* [Ссылка на страницу проекта](https://aliaksandrhrychonak.github.io/mesto/index.html)
+Адаптивная Веб-страница с возможностью редактирования информации и добавления карточек с фотографиями.
+Функционал:
+•‎ редактирование информации о себе и редактирования профиля.
+•‎ добавление, лайк, удаление фотографий.
+•‎ валидация форм.
+Стек: HTML, CSS, JS, Webpack, Api, Figma.
+Ссылка на проект: https://aliaksandrhrychonak.github.io/mesto/
+Ссылка на GitHub: https://github.com/AliaksandrHrychonak/mesto
 
